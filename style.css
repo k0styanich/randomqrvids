@@ -1,0 +1,141 @@
+@font-face {
+    font-family: font1;
+    src: url(fonts/font1.otf);
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(45deg, rgb(20, 0, 90), rgb(94, 0, 44));
+    color: white;
+    font-family: font1;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    display: block;
+    background-image: linear-gradient(45deg, rgb(20, 0, 90), rgb(94, 0, 44));
+    background-size: 200% 200%;
+    animation: moveGradient 10s linear infinite;
+}
+
+@keyframes moveGradient {
+    0% {
+        background-position: 0% 50%;
+        transform: rotate(0deg);
+    }
+    100% {
+        background-position: 100% 50%;
+        transform: rotate(360deg);
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    transition: height 0.5s ease, padding 0.5s ease;
+    height: auto;
+}
+
+.generateButton {
+    font-family: font1;
+    color: white;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 14px;
+    padding: 10px 10px;
+    height: 40px;
+    background: linear-gradient(rgb(10, 0, 156),rgb(146, 0, 97));
+}
+
+.generateButton {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.generateButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #ff33cc;
+    cursor: pointer;
+}
+
+.qrcode {
+    width: 200px;
+    height: 200px;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+.qrcodeBackground {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+    justify-content: center;
+    align-items: center;
+    background:linear-gradient(45deg,rgba(9, 0, 17, 0.5),rgba(22, 0, 0, 0.5));
+    padding: 0px 10px;
+    border-radius: 20px;
+    width: 220px;
+}
+
+.qrcodeBackground.show {
+    opacity: 1;
+    max-height: 220px;
+    padding: 10px;
+}
+
+.title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff00cc;
+}
+
+@media (max-width: 500px) {
+    .qrcode {
+        width: 150px;
+        height: 150px;
+    }
+
+    .qrcodeBackground {
+        width: 160px;
+        max-height: 0;
+        padding: 0px 10px;
+    }
+
+    .qrcodeBackground.show {
+        max-height: 160px;
+        padding: 10px;
+    }
+
+    .title {
+        font-size: 1.8em;
+    }
+}
